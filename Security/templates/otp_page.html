@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    {% load static %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>otp</title>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/otp_page.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="text-center">Enter OTP displayed in your Secure2FA Device</h1>
+        <form action="/validate_otp/" method="post">
+        {%csrf_token%}
+            <div><input type="text" maxlength="4" name="otp_value" placeholder="Enter OTP"></div>
+            <div><button class="btn btn-primary" type="submit" style="width: 113px;margin-top: -32px;">Confirm</button></div>
+        </form>
+        {%if error%}
+        <p style="color:red">Wrong OTP entered, plese try again</p>
+        {%endif%}
+        <a href="{% url 'logout' %}">Logout</a>
+    </div>
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+</body>
+
+</html>
